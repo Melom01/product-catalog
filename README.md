@@ -65,3 +65,9 @@ To run all the tests:
 flutter test
 ```
 
+---
+📄 This project was developed as a home assignment for Scalapay.
+
+© 2025 Mounir El Omri. All rights reserved.
+This code is not intended for redistribution or commercial use outside the context of the selection process.
+---
