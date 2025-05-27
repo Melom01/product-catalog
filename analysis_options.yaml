@@ -1,0 +1,36 @@
+include: package:very_good_analysis/analysis_options.yaml
+
+code-style:
+  format: true
+
+linter:
+  rules:
+    always_declare_return_types: true
+    always_use_package_imports: false
+    annotate_overrides: true
+    avoid_catching_errors: false
+    avoid_empty_else: true
+    avoid_print: true
+    avoid_relative_lib_imports: false
+    empty_catches: true
+    lines_longer_than_80_chars: false
+    prefer_relative_imports: true
+    prefer_single_quotes: true
+    public_member_api_docs: false
+    require_trailing_commas: true
+    sort_pub_dependencies: true
+    use_build_context_synchronously: false
+    comment_references: false
+    avoid_multiple_declarations_per_line: true
+    one_member_abstracts: false
+    avoid_redundant_argument_values: false
+
+analyzer:
+  exclude:
+    - lib/**/*.gr.dart
+    - lib/**/*.g.dart
+    - test/**/*.mocks.dart
+    - lib/**/*.freezed.dart
+
+  errors:
+    library_private_types_in_public_api: ignore

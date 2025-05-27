@@ -1,0 +1,29 @@
+{
+  "@@locale": "it",
+  "catalogTitle": "Esplora i prodotti",
+  "filterChipLabel": "Filtri",
+  "orderChipLabel": "Ordina",
+  "priceRange": "Fascia di prezzo",
+  "minimum": "Minimo",
+  "maximum": "Massimo",
+  "deleteEverything": "Cancella tutto",
+  "showResults": "Mostra risultati",
+  "increasingPrice": "Prezzo crescente",
+  "decreasingPrice": "Prezzo decrescente",
+  "aToZName": "Nome A-Z",
+  "zToAName": "Nome Z-A",
+  "priceOr": "{price}€ or",
+  "@priceOr": {
+    "placeholders": {
+      "price": {}
+    }
+  },
+  "installments": "3 installments of €{amount}",
+  "@installments": {
+    "description": "Installment payment with dynamic amount",
+    "placeholders": {
+      "amount": {}
+    }
+  },
+  "emptyState": "Cerca un nuovo prodotto o aggiusta i parametri di ricerca."
+}
