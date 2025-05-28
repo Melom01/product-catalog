@@ -13,21 +13,25 @@ class ProductCatalogApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return OrientationBuilder(
       builder: (context, orientation) {
-        final designSize = orientation == Orientation.portrait
+        final isTablet = MediaQuery.of(context).size.shortestSide >= 600;
+
+        final mobileSize = orientation == Orientation.portrait
             ? const Size(375, 812)
             : const Size(812, 375);
 
+        final tabletSize = orientation == Orientation.portrait
+            ? const Size(800, 1280)
+            : const Size(1280, 800);
+
         return ScreenUtilInit(
-          designSize: designSize,
+          designSize: isTablet ? tabletSize : mobileSize,
           minTextAdapt: true,
           builder: (context, child) => MaterialApp(
             theme: lightTheme,
             themeMode: ThemeMode.light,
             debugShowCheckedModeBanner: false,
             supportedLocales: ProductCatalogLocalizations.supportedLocales,
-            localizationsDelegates: const {
-              ...ProductCatalogLocalizations.localizationsDelegates,
-            },
+            localizationsDelegates: const {...ProductCatalogLocalizations.localizationsDelegates},
             home: const CatalogScreen(),
           ),
         );
