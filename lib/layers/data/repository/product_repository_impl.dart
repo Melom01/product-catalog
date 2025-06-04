@@ -25,11 +25,11 @@ class ProductRepositoryImpl implements ProductRepository {
       maxPrice: maxPrice,
     );
 
-    final documents = (response.groupedHits ?? [])
-        .expand((group) => group.hits ?? [])
+    final groupedHits = response.groupedHits ?? [];
+    final documents = groupedHits
+        .expand((group) => group.hits ?? <Hit>[])
         .map((hit) => hit.document)
-        .where((doc) => doc != null)
-        .cast<Document>()
+        .whereType<Document>()
         .toList();
 
     return documents.map(ProductMapper.fromDocument).toList();

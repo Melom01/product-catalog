@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../theme/app_colors.dart';
+import '../theme/extensions/theme_config.dart';
 
 class OutlinedTextField extends StatelessWidget {
   const OutlinedTextField({
@@ -23,25 +23,25 @@ class OutlinedTextField extends StatelessWidget {
       keyboardType: keyboardType ?? TextInputType.text,
       maxLines: 1,
       style: TextStyle(
-        color: AppColors.gray850,
+        color: context.colorScheme.catalogSecondaryBackground,
         fontWeight: FontWeight.w500,
         fontSize: 13.sp,
         letterSpacing: 0,
       ),
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: const TextStyle(color: AppColors.gray700, letterSpacing: 0),
-        focusColor: AppColors.gray400,
+        labelStyle: TextStyle(color: context.colorScheme.catalogSecondaryText, letterSpacing: 0),
+        focusColor: context.colorScheme.catalogDivider,
         border: OutlineInputBorder(
-          borderSide: const BorderSide(color: AppColors.gray400),
+          borderSide: BorderSide(color: context.colorScheme.catalogDivider!),
           borderRadius: BorderRadius.circular(10.r),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: AppColors.gray400),
+          borderSide: BorderSide(color: context.colorScheme.catalogDivider!),
           borderRadius: BorderRadius.circular(10.r),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: AppColors.gray400),
+          borderSide: BorderSide(color: context.colorScheme.catalogDivider!),
           borderRadius: BorderRadius.circular(10.r),
         ),
       ),

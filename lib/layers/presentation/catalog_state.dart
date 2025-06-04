@@ -5,6 +5,7 @@ import '../domain/model/product_model.dart';
 class CatalogState extends Equatable {
   const CatalogState({
     this.isLoading = false,
+    this.wrongPriceFilter = false,
     this.products = const <ProductModel>[],
     this.searchBarControllerText,
     this.sortDirection,
@@ -13,6 +14,7 @@ class CatalogState extends Equatable {
   });
 
   final bool isLoading;
+  final bool wrongPriceFilter;
   final List<ProductModel> products;
   final String? searchBarControllerText;
   final String? sortDirection;
@@ -22,6 +24,7 @@ class CatalogState extends Equatable {
   @override
   List<Object?> get props => [
     isLoading,
+    wrongPriceFilter,
     products,
     searchBarControllerText,
     sortDirection,
@@ -31,6 +34,7 @@ class CatalogState extends Equatable {
 
   CatalogState copyWith({
     bool? isLoading,
+    bool? wrongPriceFilter,
     String? searchBarControllerText,
     String? sortDirection,
     String? minPrice,
@@ -39,8 +43,8 @@ class CatalogState extends Equatable {
   }) {
     return CatalogState(
       isLoading: isLoading ?? this.isLoading,
-      searchBarControllerText:
-          searchBarControllerText ?? this.searchBarControllerText,
+      wrongPriceFilter: wrongPriceFilter ?? this.wrongPriceFilter,
+      searchBarControllerText: searchBarControllerText ?? this.searchBarControllerText,
       sortDirection: sortDirection ?? this.sortDirection,
       minPrice: minPrice ?? this.minPrice,
       maxPrice: maxPrice ?? this.maxPrice,

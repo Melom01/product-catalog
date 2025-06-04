@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../utils/icon_constants.dart';
-import '../../theme/app_colors.dart';
+import '../../theme/extensions/theme_config.dart';
 
 class CatalogFilterBottomSheet extends StatelessWidget {
   const CatalogFilterBottomSheet({
@@ -23,7 +23,7 @@ class CatalogFilterBottomSheet extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(top: 7.h, bottom: 16.h, right: 16.w, left: 16.w),
       decoration: BoxDecoration(
-        color: AppColors.gray300,
+        color: context.colorScheme.catalogFilterBackground,
         borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
       ),
       child: ListView(
@@ -34,7 +34,7 @@ class CatalogFilterBottomSheet extends StatelessWidget {
               width: 45.w,
               height: 5.h,
               decoration: BoxDecoration(
-                color: AppColors.gray600,
+                color: context.colorScheme.catalogSecondaryText,
                 borderRadius: BorderRadius.circular(100.r),
               ),
             ),
@@ -43,14 +43,19 @@ class CatalogFilterBottomSheet extends StatelessWidget {
             alignment: Alignment.centerRight,
             child: IconButton(
               onPressed: onClose,
-              icon: SvgPicture.asset(AppIcons.cross, width: 16.w, height: 16.h),
+              icon: SvgPicture.asset(
+                AppIcons.cross,
+                width: 16.w,
+                height: 16.h,
+                colorFilter: ColorFilter.mode(context.colorScheme.catalogIcon!, BlendMode.srcIn),
+              ),
             ),
           ),
           Text(
             title,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: AppColors.gray900,
+              color: context.colorScheme.catalogPrimaryText,
               fontWeight: FontWeight.w600,
               fontSize: 15.sp,
               letterSpacing: 0,
@@ -82,19 +87,13 @@ class CatalogFilterBottomSheet extends StatelessWidget {
               : (landscapeMaxSize ?? 0.8);
 
           return Padding(
-            padding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom,
-            ),
+            padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
             child: DraggableScrollableSheet(
               expand: false,
               initialChildSize: maxSize,
               maxChildSize: maxSize,
               builder: (context, scrollController) {
-                return CatalogFilterBottomSheet(
-                  title: title,
-                  content: child,
-                  onClose: onClose,
-                );
+                return CatalogFilterBottomSheet(title: title, content: child, onClose: onClose);
               },
             ),
           );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../core/ui/theme/dark_theme.dart';
 import '../core/ui/theme/light_theme.dart';
 import '../l10n/delegates/product_catalog_localizations.dart';
 import '../layers/presentation/catalog_screen.dart';
@@ -28,7 +29,8 @@ class ProductCatalogApp extends StatelessWidget {
           minTextAdapt: true,
           builder: (context, child) => MaterialApp(
             theme: lightTheme,
-            themeMode: ThemeMode.light,
+            darkTheme: darkTheme,
+            themeMode: ThemeMode.system,
             debugShowCheckedModeBanner: false,
             supportedLocales: ProductCatalogLocalizations.supportedLocales,
             localizationsDelegates: const {...ProductCatalogLocalizations.localizationsDelegates},

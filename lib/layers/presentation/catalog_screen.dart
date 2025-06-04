@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/di/di.dart';
-import '../../core/ui/theme/app_colors.dart';
+import '../../core/ui/theme/extensions/theme_config.dart';
 import '../../core/ui/widgets/catalog/catalog_product.dart';
 import '../../core/ui/widgets/catalog/catalog_product_skeleton.dart';
 import '../../core/ui/widgets/catalog_search_bar.dart';
@@ -38,12 +38,12 @@ class CatalogScreen extends StatelessWidget {
       child: BlocBuilder<CatalogCubit, CatalogState>(
         builder: (context, state) {
           final cubit = context.read<CatalogCubit>();
-          final isPortrait =
-              MediaQuery.of(context).orientation == Orientation.portrait;
+          final isTablet = MediaQuery.of(context).size.shortestSide >= 600;
+          final isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
           final crossAxisCount = isPortrait ? 2 : 4;
 
           return Scaffold(
-            backgroundColor: AppColors.gray100,
+            backgroundColor: context.colorScheme.catalogPrimaryBackground,
             body: SafeArea(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -55,16 +55,13 @@ class CatalogScreen extends StatelessWidget {
                       child: (state.products.isNotEmpty || state.isLoading)
                           ? GridView.builder(
                               padding: EdgeInsets.only(bottom: 16.h),
-                              itemCount: state.isLoading
-                                  ? 20
-                                  : state.products.length,
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: crossAxisCount,
-                                    crossAxisSpacing: 16.w,
-                                    mainAxisSpacing: 12.h,
-                                    childAspectRatio: 0.45,
-                                  ),
+                              itemCount: state.isLoading ? 20 : state.products.length,
+                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: crossAxisCount,
+                                crossAxisSpacing: 16.w,
+                                mainAxisSpacing: 12.h,
+                                childAspectRatio: isTablet ? (isPortrait ? 1 : 0.85) : 0.45,
+                              ),
                               itemBuilder: (context, index) {
                                 if (state.isLoading) {
                                   return const CatalogProductSkeleton();
@@ -76,8 +73,7 @@ class CatalogScreen extends StatelessWidget {
                                     title: product.title,
                                     merchant: product.merchant,
                                     price: product.sellingPrice.toString(),
-                                    installmentPrice: product.installmentPrice
-                                        .toStringAsFixed(2),
+                                    installmentPrice: product.installmentPrice.toStringAsFixed(2),
                                   );
                                 }
                               },
@@ -87,7 +83,7 @@ class CatalogScreen extends StatelessWidget {
                                 context.l10n.emptyState,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  color: AppColors.gray700,
+                                  color: context.colorScheme.catalogSecondaryText,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 14.sp,
                                   letterSpacing: 0,
@@ -105,11 +101,7 @@ class CatalogScreen extends StatelessWidget {
     );
   }
 
-  Widget controlsSection(
-    BuildContext context,
-    CatalogCubit cubit,
-    CatalogState state,
-  ) {
+  Widget controlsSection(BuildContext context, CatalogCubit cubit, CatalogState state) {
     final sortOptions = [
       SortOption(key: 'asc', label: context.l10n.increasingPrice),
       SortOption(key: 'desc', label: context.l10n.decreasingPrice),
@@ -127,7 +119,7 @@ class CatalogScreen extends StatelessWidget {
           child: Text(
             context.l10n.catalogTitle,
             style: TextStyle(
-              color: AppColors.header,
+              color: context.colorScheme.catalogHeader,
               fontWeight: FontWeight.w600,
               fontSize: 25.sp,
               letterSpacing: 0,
@@ -182,8 +174,7 @@ class CatalogScreen extends StatelessWidget {
                     child: BlocBuilder<CatalogCubit, CatalogState>(
                       builder: (context, state) {
                         return SortOptionsBottomSheetContent(
-                          selected:
-                              state.sortDirection ?? sortOptions.first.key,
+                          selected: state.sortDirection ?? sortOptions.first.key,
                           options: sortOptions,
                           onChanged: (String? selectedOption) {
                             cubit.changeProductsSorting(selectedOption);

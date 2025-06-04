@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../layers/presentation/model/sort_option.dart';
-import '../../theme/app_colors.dart';
+import '../../theme/extensions/theme_config.dart';
 
 class SortOptionsBottomSheetContent extends StatelessWidget {
   const SortOptionsBottomSheetContent({
@@ -22,7 +22,7 @@ class SortOptionsBottomSheetContent extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
       decoration: BoxDecoration(
-        color: AppColors.gray100,
+        color: context.colorScheme.catalogPrimaryBackground,
         borderRadius: BorderRadius.circular(20.r),
       ),
       child: Column(
@@ -38,7 +38,7 @@ class SortOptionsBottomSheetContent extends StatelessWidget {
                     title: Text(
                       entry.value.label,
                       style: TextStyle(
-                        color: AppColors.gray900,
+                        color: context.colorScheme.catalogPrimaryText,
                         fontWeight: FontWeight.w500,
                         fontSize: 14.sp,
                         letterSpacing: 0,
@@ -46,9 +46,9 @@ class SortOptionsBottomSheetContent extends StatelessWidget {
                     ),
                     fillColor: WidgetStateProperty.resolveWith<Color>((states) {
                       if (states.contains(WidgetState.selected)) {
-                        return AppColors.accent;
+                        return context.colorScheme.catalogAccent!;
                       }
-                      return AppColors.unselected;
+                      return context.colorScheme.catalogUnselectedOption!;
                     }),
                     contentPadding: EdgeInsets.symmetric(horizontal: 16.w),
                     controlAffinity: ListTileControlAffinity.leading,
@@ -57,7 +57,7 @@ class SortOptionsBottomSheetContent extends StatelessWidget {
                   if (entry.key < options.length - 1)
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16.w),
-                      child: Divider(color: AppColors.gray400, height: 1.h),
+                      child: Divider(color: context.colorScheme.catalogDivider, height: 1.h),
                     ),
                 ],
               ),

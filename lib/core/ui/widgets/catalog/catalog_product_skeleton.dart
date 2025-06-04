@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../../theme/app_colors.dart';
+import '../../theme/extensions/theme_config.dart';
 
 class CatalogProductSkeleton extends StatelessWidget {
   const CatalogProductSkeleton({super.key});
@@ -11,8 +11,8 @@ class CatalogProductSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: AppColors.gray500,
-      highlightColor: AppColors.gray100,
+      baseColor: context.colorScheme.catalogShimmer!,
+      highlightColor: context.colorScheme.catalogPrimaryBackground!,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -20,7 +20,7 @@ class CatalogProductSkeleton extends StatelessWidget {
             child: Container(
               width: double.infinity,
               decoration: BoxDecoration(
-                color: AppColors.gray100,
+                color: context.colorScheme.catalogPrimaryBackground,
                 borderRadius: BorderRadius.circular(20.r),
               ),
             ),
@@ -29,14 +29,18 @@ class CatalogProductSkeleton extends StatelessWidget {
           Container(
             height: 12.h,
             width: double.infinity,
-            color: AppColors.gray100,
+            color: context.colorScheme.catalogPrimaryBackground,
           ),
           SizedBox(height: 4.h),
-          Container(height: 12.h, width: 80.w, color: AppColors.gray100),
+          Container(height: 12.h, width: 80.w, color: context.colorScheme.catalogPrimaryBackground),
           SizedBox(height: 8.h),
-          Container(height: 12.h, width: 60.w, color: AppColors.gray100),
+          Container(height: 12.h, width: 60.w, color: context.colorScheme.catalogPrimaryBackground),
           SizedBox(height: 4.h),
-          Container(height: 14.h, width: 100.w, color: AppColors.gray100),
+          Container(
+            height: 14.h,
+            width: 100.w,
+            color: context.colorScheme.catalogPrimaryBackground,
+          ),
         ],
       ),
     );

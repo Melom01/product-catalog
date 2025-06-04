@@ -27,8 +27,6 @@ Future<void> registerDependencies() async {
     ..registerLazySingleton<ProductRepository>(
       () => ProductRepositoryImpl(dataSource: injector<ProductDataSource>()),
     )
-    ..registerLazySingleton<ProductUseCase>(
-      () => ProductUseCase(injector<ProductRepository>()),
-    )
+    ..registerLazySingleton<ProductUseCase>(() => ProductUseCase(injector<ProductRepository>()))
     ..registerFactory(() => CatalogCubit(injector<ProductUseCase>()));
 }

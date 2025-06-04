@@ -4,14 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../utils/icon_constants.dart';
-import '../theme/app_colors.dart';
+import '../theme/extensions/theme_config.dart';
 
 class CatalogSearchBar extends StatelessWidget {
-  const CatalogSearchBar({
-    required this.controller,
-    required this.onSearch,
-    super.key,
-  });
+  const CatalogSearchBar({required this.controller, required this.onSearch, super.key});
 
   final TextEditingController controller;
   final VoidCallback onSearch;
@@ -22,9 +18,9 @@ class CatalogSearchBar extends StatelessWidget {
       height: 55.h,
       padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 4.h),
       decoration: BoxDecoration(
-        color: AppColors.gray100,
+        color: context.colorScheme.catalogPrimaryBackground,
         borderRadius: BorderRadius.circular(100.r),
-        border: Border.all(color: AppColors.border),
+        border: Border.all(color: context.colorScheme.catalogBorder!),
       ),
       child: Row(
         children: [
@@ -34,17 +30,14 @@ class CatalogSearchBar extends StatelessWidget {
               keyboardType: TextInputType.text,
               maxLines: 1,
               style: TextStyle(
-                color: AppColors.gray900,
+                color: context.colorScheme.catalogPrimaryText,
                 fontWeight: FontWeight.w500,
                 fontSize: 13.sp,
                 letterSpacing: 0,
               ),
               decoration: InputDecoration(
                 border: InputBorder.none,
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 12.h,
-                  horizontal: 11.w,
-                ),
+                contentPadding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 11.w),
               ),
             ),
           ),
@@ -52,16 +45,12 @@ class CatalogSearchBar extends StatelessWidget {
           Container(
             height: 45.h,
             width: 45.w,
-            decoration: const BoxDecoration(
-              color: AppColors.accent,
+            decoration: BoxDecoration(
+              color: context.colorScheme.catalogAccent,
               shape: BoxShape.circle,
             ),
             child: IconButton(
-              icon: SvgPicture.asset(
-                AppIcons.searchLens,
-                width: 16.w,
-                height: 16.h,
-              ),
+              icon: SvgPicture.asset(AppIcons.searchLens, width: 16.w, height: 16.h),
               onPressed: onSearch,
             ),
           ),

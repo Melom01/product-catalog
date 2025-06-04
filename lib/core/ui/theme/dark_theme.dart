@@ -4,9 +4,9 @@ import '../../utils/app_constants.dart';
 
 const primary500 = Color(0xFF5666F0);
 
-final lightTheme = ThemeData(
+final darkTheme = ThemeData(
   useMaterial3: true,
-  brightness: Brightness.light,
+  brightness: Brightness.dark,
   fontFamily: AppConstants.appFont,
   textSelectionTheme: TextSelectionThemeData(
     cursorColor: primary500,

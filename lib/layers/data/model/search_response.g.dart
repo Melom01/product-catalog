@@ -6,15 +6,15 @@ part of 'search_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SearchResponse _$SearchResponseFromJson(Map<String, dynamic> json) =>
-    SearchResponse(
-      groupedHits: (json['grouped_hits'] as List<dynamic>?)
-          ?.map((e) => GroupedHit.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
+SearchResponse _$SearchResponseFromJson(Map<String, dynamic> json) => SearchResponse(
+  groupedHits: (json['grouped_hits'] as List<dynamic>?)
+      ?.map((e) => GroupedHit.fromJson(e as Map<String, dynamic>))
+      .toList(),
+);
 
-Map<String, dynamic> _$SearchResponseToJson(SearchResponse instance) =>
-    <String, dynamic>{'grouped_hits': instance.groupedHits};
+Map<String, dynamic> _$SearchResponseToJson(SearchResponse instance) => <String, dynamic>{
+  'grouped_hits': instance.groupedHits,
+};
 
 GroupedHit _$GroupedHitFromJson(Map<String, dynamic> json) => GroupedHit(
   hits: (json['hits'] as List<dynamic>?)
@@ -22,8 +22,9 @@ GroupedHit _$GroupedHitFromJson(Map<String, dynamic> json) => GroupedHit(
       .toList(),
 );
 
-Map<String, dynamic> _$GroupedHitToJson(GroupedHit instance) =>
-    <String, dynamic>{'hits': instance.hits};
+Map<String, dynamic> _$GroupedHitToJson(GroupedHit instance) => <String, dynamic>{
+  'hits': instance.hits,
+};
 
 Hit _$HitFromJson(Map<String, dynamic> json) => Hit(
   document: json['document'] == null
@@ -31,9 +32,7 @@ Hit _$HitFromJson(Map<String, dynamic> json) => Hit(
       : Document.fromJson(json['document'] as Map<String, dynamic>),
 );
 
-Map<String, dynamic> _$HitToJson(Hit instance) => <String, dynamic>{
-  'document': instance.document,
-};
+Map<String, dynamic> _$HitToJson(Hit instance) => <String, dynamic>{'document': instance.document};
 
 Document _$DocumentFromJson(Map<String, dynamic> json) => Document(
   affiliateUrl: json['affiliate_url'] as String?,

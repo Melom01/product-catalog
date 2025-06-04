@@ -6,8 +6,7 @@ part 'search_response.g.dart';
 class SearchResponse {
   SearchResponse({required this.groupedHits});
 
-  factory SearchResponse.fromJson(Map<String, dynamic> json) =>
-      _$SearchResponseFromJson(json);
+  factory SearchResponse.fromJson(Map<String, dynamic> json) => _$SearchResponseFromJson(json);
 
   @JsonKey(name: 'grouped_hits')
   final List<GroupedHit>? groupedHits;
@@ -19,8 +18,7 @@ class SearchResponse {
 class GroupedHit {
   GroupedHit({required this.hits});
 
-  factory GroupedHit.fromJson(Map<String, dynamic> json) =>
-      _$GroupedHitFromJson(json);
+  factory GroupedHit.fromJson(Map<String, dynamic> json) => _$GroupedHitFromJson(json);
 
   @JsonKey(name: 'hits')
   final List<Hit>? hits;
@@ -66,8 +64,7 @@ class Document {
     required this.merchantToken,
   });
 
-  factory Document.fromJson(Map<String, dynamic> json) =>
-      _$DocumentFromJson(json);
+  factory Document.fromJson(Map<String, dynamic> json) => _$DocumentFromJson(json);
 
   @JsonKey(name: 'affiliate_url')
   final String? affiliateUrl;

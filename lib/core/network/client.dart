@@ -20,15 +20,11 @@ class DioClient {
           handler.next(options);
         },
         onResponse: (response, handler) {
-          _logger.i(
-            'Response: ${response.statusCode} ${response.requestOptions.uri}',
-          );
+          _logger.i('Response: ${response.statusCode} ${response.requestOptions.uri}');
           handler.next(response);
         },
         onError: (DioException exception, handler) {
-          _logger.e(
-            'Error: ${exception.message} - ${exception.response?.statusCode}',
-          );
+          _logger.e('Error: ${exception.message} - ${exception.response?.statusCode}');
           handler.next(exception);
         },
       ),

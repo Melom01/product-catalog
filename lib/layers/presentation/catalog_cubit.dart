@@ -14,15 +14,11 @@ class CatalogCubit extends Cubit<CatalogState> {
       });
     minPriceTextEditingController = TextEditingController()
       ..addListener(() {
-        _handleMinPriceTextEditingControllerListener(
-          minPriceTextEditingController.text,
-        );
+        _handleMinPriceTextEditingControllerListener(minPriceTextEditingController.text);
       });
     maxPriceTextEditingController = TextEditingController()
       ..addListener(() {
-        _handleMaxPriceTextEditingControllerListener(
-          maxPriceTextEditingController.text,
-        );
+        _handleMaxPriceTextEditingControllerListener(maxPriceTextEditingController.text);
       });
   }
 
@@ -46,15 +42,11 @@ class CatalogCubit extends Cubit<CatalogState> {
     switch (sortDirection) {
       case 'a_z':
         final sorted = List<ProductModel>.from(state.products);
-        sorted.sort(
-          (a, z) => a.title.toLowerCase().compareTo(z.title.toLowerCase()),
-        );
+        sorted.sort((a, z) => a.title.toLowerCase().compareTo(z.title.toLowerCase()));
         emit(state.copyWith(products: sorted, sortDirection: sortDirection));
       case 'z_a':
         final sorted = List<ProductModel>.from(state.products);
-        sorted.sort(
-          (a, z) => z.title.toLowerCase().compareTo(a.title.toLowerCase()),
-        );
+        sorted.sort((a, z) => z.title.toLowerCase().compareTo(a.title.toLowerCase()));
         emit(state.copyWith(products: sorted, sortDirection: sortDirection));
       default:
         _fetchProducts(

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../theme/app_colors.dart';
+import '../../theme/extensions/theme_config.dart';
 
 class CatalogFilterChip extends StatelessWidget {
   const CatalogFilterChip({
@@ -20,7 +20,7 @@ class CatalogFilterChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: AppColors.gray300,
+      color: context.colorScheme.catalogFilterBackground,
       borderRadius: BorderRadius.circular(100.r),
       child: InkWell(
         borderRadius: BorderRadius.circular(100.r),
@@ -29,12 +29,17 @@ class CatalogFilterChip extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 6.h),
           child: Row(
             children: [
-              SvgPicture.asset(iconPath, width: 14.w, height: 14.h),
+              SvgPicture.asset(
+                iconPath,
+                width: 14.w,
+                height: 14.h,
+                colorFilter: ColorFilter.mode(context.colorScheme.catalogIcon!, BlendMode.srcIn),
+              ),
               SizedBox(width: 6.w),
               Text(
                 label,
                 style: TextStyle(
-                  color: AppColors.gray900,
+                  color: context.colorScheme.catalogPrimaryText,
                   fontWeight: FontWeight.w600,
                   fontSize: 11.sp,
                   letterSpacing: 0,

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../l10n/l10n.dart';
-import '../../theme/app_colors.dart';
+import '../../theme/extensions/theme_config.dart';
 import '../outlined_text_field.dart';
 
 class FilterOptionsBottomSheetContent extends StatelessWidget {
@@ -27,7 +27,7 @@ class FilterOptionsBottomSheetContent extends StatelessWidget {
         Container(
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
           decoration: BoxDecoration(
-            color: AppColors.gray100,
+            color: context.colorScheme.catalogPrimaryBackground,
             borderRadius: BorderRadius.circular(20.r),
           ),
           child: Column(
@@ -37,7 +37,7 @@ class FilterOptionsBottomSheetContent extends StatelessWidget {
               Text(
                 context.l10n.priceRange,
                 style: TextStyle(
-                  color: AppColors.gray900,
+                  color: context.colorScheme.catalogPrimaryText,
                   fontWeight: FontWeight.w500,
                   fontSize: 13.sp,
                   letterSpacing: 0,
@@ -57,7 +57,7 @@ class FilterOptionsBottomSheetContent extends StatelessWidget {
                     width: 10.w,
                     margin: EdgeInsets.symmetric(horizontal: 8.w),
                     child: Divider(
-                      color: AppColors.gray600,
+                      color: context.colorScheme.catalogDivider,
                       thickness: 2.h,
                       radius: BorderRadius.circular(100.r),
                     ),
@@ -83,13 +83,11 @@ class FilterOptionsBottomSheetContent extends StatelessWidget {
                   minPriceController.clear();
                   maxPriceController.clear();
                 },
-                style: TextButton.styleFrom(
-                  padding: EdgeInsets.symmetric(vertical: 10.h),
-                ),
+                style: TextButton.styleFrom(padding: EdgeInsets.symmetric(vertical: 10.h)),
                 child: Text(
                   context.l10n.deleteEverything,
                   style: TextStyle(
-                    color: AppColors.accent,
+                    color: context.colorScheme.catalogAccent,
                     fontWeight: FontWeight.w600,
                     fontSize: 14.sp,
                     letterSpacing: 0,
@@ -101,19 +99,16 @@ class FilterOptionsBottomSheetContent extends StatelessWidget {
             Expanded(
               child: ElevatedButton(
                 onPressed: () {
-                  onShowResults(
-                    minPriceController.text.trim(),
-                    maxPriceController.text.trim(),
-                  );
+                  onShowResults(minPriceController.text.trim(), maxPriceController.text.trim());
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.accent,
+                  backgroundColor: context.colorScheme.catalogAccent,
                   padding: EdgeInsets.symmetric(vertical: 10.h),
                 ),
                 child: Text(
                   context.l10n.showResults,
                   style: TextStyle(
-                    color: AppColors.gray100,
+                    color: context.colorScheme.white,
                     fontWeight: FontWeight.w600,
                     fontSize: 14.sp,
                     letterSpacing: 0,

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../l10n/l10n.dart';
-import '../../theme/app_colors.dart';
+import '../../theme/extensions/theme_config.dart';
 
 class CatalogProduct extends StatelessWidget {
   const CatalogProduct({
@@ -31,14 +31,13 @@ class CatalogProduct extends StatelessWidget {
           width: double.infinity,
           height: 195.h,
           decoration: BoxDecoration(
-            color: AppColors.gray100,
+            color: context.colorScheme.catalogPrimaryBackground,
             borderRadius: BorderRadius.circular(20.r),
           ),
           child: Image.network(
             imageUrl,
             fit: BoxFit.contain,
-            errorBuilder: (context, error, stackTrace) =>
-                const Icon(Icons.broken_image),
+            errorBuilder: (context, error, stackTrace) => const Icon(Icons.broken_image),
           ),
         ),
         SizedBox(height: 8.h),
@@ -47,7 +46,7 @@ class CatalogProduct extends StatelessWidget {
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            color: AppColors.gray900,
+            color: context.colorScheme.catalogPrimaryText,
             fontWeight: FontWeight.w600,
             fontSize: 13.sp,
             letterSpacing: 0,
@@ -59,7 +58,7 @@ class CatalogProduct extends StatelessWidget {
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            color: AppColors.gray850,
+            color: context.colorScheme.catalogSecondaryBackground,
             fontWeight: FontWeight.w500,
             fontSize: 12.sp,
             letterSpacing: 0,
@@ -69,7 +68,7 @@ class CatalogProduct extends StatelessWidget {
         Text(
           context.l10n.priceOr(price),
           style: TextStyle(
-            color: AppColors.gray700,
+            color: context.colorScheme.catalogSecondaryText,
             fontWeight: FontWeight.w500,
             fontSize: 12.sp,
             letterSpacing: 0,
@@ -80,7 +79,7 @@ class CatalogProduct extends StatelessWidget {
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            color: AppColors.accent,
+            color: context.colorScheme.catalogAccent,
             fontWeight: FontWeight.w600,
             fontSize: 14.sp,
             letterSpacing: 0,
